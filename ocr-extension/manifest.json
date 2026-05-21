@@ -1,0 +1,51 @@
+{
+  "manifest_version": 3,
+  "name": "Screen OCR",
+  "version": "1.0.0",
+  "permissions": [
+    "activeTab",
+    "scripting",
+    "tabs",
+    "offscreen"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "commands": {
+    "start-ocr": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S",
+        "mac": "Command+Shift+S"
+      },
+      "description": "Start OCR"
+    }
+  },
+  "action": {
+    "default_title": "Screen OCR",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "48": "icons/icon48.png",
+      "128": "icons/icon128.png"
+    }
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "worker.min.js",
+        "tesseract-core-simd.wasm.js",
+        "tesseract-core-simd.wasm",
+        "tesseract-core.wasm.js",
+        "tesseract-core.wasm"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; worker-src 'self'; object-src 'self'; connect-src 'self' https://tessdata.projectnaptha.com"
+  }
+}
